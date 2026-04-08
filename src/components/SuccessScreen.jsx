@@ -17,7 +17,7 @@ import { motion } from 'framer-motion'
 import { EVENT } from '../config'
 import CredentialCard from './CredentialCard'
 
-export default function SuccessScreen({ fullName, photo, onBack }) {
+export default function SuccessScreen({ fullName, empresa, cargo, photo, onBack }) {
   const exportRef = useRef(null)
   const [copied, setCopied] = useState(false)
   const [downloading, setDownloading] = useState(false)
@@ -56,10 +56,51 @@ export default function SuccessScreen({ fullName, photo, onBack }) {
     }
   }, [])
 
-  const handleLinkedIn = useCallback(() => {
-    const text = encodeURIComponent(EVENT.shareText + '\n\n' + EVENT.eventUrl)
-    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(EVENT.eventUrl)}&summary=${text}`, '_blank')
+  const generateImageBlob = useCallback(async () => {
+    if (!exportRef.current) return null
+    await new Promise(r => setTimeout(r, 500))
+    const dataUrl = await toPng(exportRef.current, {
+      width: 1080,
+      height: 1354,
+      pixelRatio: 1,
+      cacheBust: true,
+    })
+    const res = await fetch(dataUrl)
+    return res.blob()
   }, [])
+
+  const handleLinkedIn = useCallback(async () => {
+    // Try Web Share API first (mobile + some desktop browsers)
+    if (navigator.share && navigator.canShare) {
+      try {
+        const blob = await generateImageBlob()
+        if (blob) {
+          const file = new File([blob], 'credencial-shecommerce.png', { type: 'image/png' })
+          const shareData = {
+            text: EVENT.shareText,
+            url: EVENT.eventUrl,
+            files: [file],
+          }
+          if (navigator.canShare(shareData)) {
+            await navigator.share(shareData)
+            return
+          }
+        }
+      } catch (err) {
+        // User cancelled or API not supported for files, fall through to fallback
+        if (err.name === 'AbortError') return
+      }
+    }
+
+    // Fallback: copy text to clipboard, then open LinkedIn
+    try {
+      await navigator.clipboard.writeText(EVENT.shareText + '\n\n' + EVENT.eventUrl)
+      toast.success('Texto copiado. Pégalo en tu publicación de LinkedIn y adjunta la imagen descargada.', { duration: 6000 })
+    } catch {
+      toast.info('Abre LinkedIn, pega el texto promocional y adjunta tu credencial descargada.', { duration: 6000 })
+    }
+    window.open('https://www.linkedin.com/feed/?shareActive=true', '_blank')
+  }, [generateImageBlob])
 
   return (
     <motion.div
@@ -91,7 +132,7 @@ export default function SuccessScreen({ fullName, photo, onBack }) {
         {/* Credential preview */}
         <div className="lg:col-span-7 flex justify-center">
           <div className="w-full max-w-[480px]">
-            <CredentialCard fullName={fullName} photo={photo} />
+            <CredentialCard fullName={fullName} empresa={empresa} cargo={cargo} photo={photo} />
           </div>
         </div>
 
@@ -164,7 +205,7 @@ export default function SuccessScreen({ fullName, photo, onBack }) {
       {/* Hidden export render target */}
       <div className="fixed" style={{ left: '-9999px', top: 0 }}>
         <div ref={exportRef}>
-          <CredentialCard fullName={fullName} photo={photo} forExport />
+          <CredentialCard fullName={fullName} empresa={empresa} cargo={cargo} photo={photo} forExport />
         </div>
       </div>
     </motion.div>

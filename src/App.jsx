@@ -79,7 +79,7 @@ function App() {
 
                   {/* Card */}
                   <div className="relative">
-                    <CredentialCard fullName={fullName} photo={photo} />
+                    <CredentialCard fullName={fullName} empresa={empresa} cargo={cargo} photo={photo} />
                   </div>
 
                   {/* Live badge */}
@@ -106,6 +106,8 @@ function App() {
             >
               <SuccessScreen
                 fullName={fullName}
+                empresa={empresa}
+                cargo={cargo}
                 photo={photo}
                 onBack={handleBack}
               />
