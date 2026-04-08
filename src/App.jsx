@@ -9,6 +9,8 @@ import { EVENT } from './config'
 
 function App() {
   const [fullName, setFullName] = useState('')
+  const [empresa, setEmpresa] = useState('')
+  const [cargo, setCargo] = useState('')
   const [photo, setPhoto] = useState(null)
   const [screen, setScreen] = useState('form') // 'form' | 'success'
 
@@ -53,6 +55,10 @@ function App() {
                   <CredentialForm
                     fullName={fullName}
                     setFullName={setFullName}
+                    empresa={empresa}
+                    setEmpresa={setEmpresa}
+                    cargo={cargo}
+                    setCargo={setCargo}
                     photo={photo}
                     setPhoto={setPhoto}
                     onGenerate={handleGenerate}
