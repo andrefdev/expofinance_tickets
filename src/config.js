@@ -2,7 +2,7 @@ export const EVENT = {
   name: "Shecommerce",
   subtitle: "Construyendo continuidad y liderazgo",
   hashtags: "#SHECommerce #CAPECE #Shecommerce2026",
-  logo: "/assets/logo-shecommerce.png",
+  logo: "/assets/logo-shecommerce-white.png",
   logoWhite: "/assets/logo-shecommerce-white.png",
   platformName: "CAPECE",
   defaultRole: "PARTICIPANTE",

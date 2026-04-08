@@ -105,7 +105,15 @@ export default function CredentialForm({ fullName, setFullName, empresa, setEmpr
           )}
         </div>
 
-        {/* Empresa */}
+        {/* Cargo */}
+        <div className="space-y-2">
+          <label className="font-body text-xs font-extrabold tracking-widest text-on-surface-variant uppercase">
+            Cargo <span className="text-secondary">*</span>
+          </label>
+          <CargoSelect value={cargo} onChange={setCargo} />
+        </div>
+
+         {/* Empresa */}
         <div className="space-y-2">
           <label className="font-body text-xs font-extrabold tracking-widest text-on-surface-variant uppercase">
             Empresa a la que representas <span className="text-secondary">*</span>
@@ -118,14 +126,6 @@ export default function CredentialForm({ fullName, setFullName, empresa, setEmpr
             maxLength={80}
             className="w-full bg-surface-low border-none focus:ring-2 focus:ring-primary-container px-4 py-4 rounded-lg font-body text-lg transition-all placeholder:text-outline-variant outline-none"
           />
-        </div>
-
-        {/* Cargo */}
-        <div className="space-y-2">
-          <label className="font-body text-xs font-extrabold tracking-widest text-on-surface-variant uppercase">
-            Cargo <span className="text-secondary">*</span>
-          </label>
-          <CargoSelect value={cargo} onChange={setCargo} />
         </div>
 
         {/* Photo upload (required) */}

@@ -101,7 +101,7 @@ export default function CredentialCard({ fullName, empresa, cargo, photo, forExp
                 <span style={{
                   fontFamily: 'Manrope, sans-serif',
                   fontWeight: 600,
-                  fontSize: '15px',
+                  fontSize: '19px',
                   color: 'rgba(255,255,255,0.75)',
                   letterSpacing: '0.05em',
                   wordBreak: 'break-word',
@@ -178,7 +178,7 @@ export default function CredentialCard({ fullName, empresa, cargo, photo, forExp
               <span
                 className="font-body font-semibold"
                 style={{
-                  fontSize: 'clamp(6px, 1.8vw, 10px)',
+                  fontSize: 'clamp(7px, 2.2vw, 12px)',
                   color: 'rgba(255,255,255,0.75)',
                   letterSpacing: '0.05em',
                   wordBreak: 'break-word',

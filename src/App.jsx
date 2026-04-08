@@ -61,7 +61,7 @@ function App() {
                     <span className="text-primary">Credencial Digital</span>
                   </h1>
                   <p className="text-on-surface-variant text-base md:text-xl max-w-lg leading-relaxed">
-                    Crea tu credencial oficial para el {EVENT.name}. {EVENT.subtitle}.
+                    Crea tu credencial oficial para el #SHEcommerceAwards2026, el congreso de equidad de género más importante del ecosistema digital, y celebremos juntos el talento femenino que está transformando la industria.
                   </p>
                 </div>
 
@@ -108,6 +108,14 @@ function App() {
                 <p className="mt-6 md:mt-8 text-on-surface-variant font-body text-xs md:text-sm uppercase tracking-widest text-center max-w-xs">
                   El diseño final puede variar ligeramente según la foto cargada.
                 </p>
+                <button
+                  type="button"
+                  onClick={handleGenerate}
+                  disabled={!(fullName.trim().length >= 3 && empresa.trim().length >= 2 && cargo.trim().length >= 2 && photo)}
+                  className="mt-6 w-full max-w-md bg-secondary text-white py-4 px-8 rounded-xl font-headline font-extrabold text-lg uppercase tracking-tight flex items-center justify-center gap-3 transition-all active:scale-95 hover:opacity-90 kinetic-shadow disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100"
+                >
+                  Descargar Credencial
+                </button>
               </section>
             </motion.div>
           ) : (

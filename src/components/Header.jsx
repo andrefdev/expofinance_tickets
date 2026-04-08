@@ -12,7 +12,7 @@ export default function Header() {
         <img
           src={EVENT.logo}
           alt="SHE/COMMERCE"
-          className="h-5 md:h-7 w-auto"
+          className="h-5 md:h-15 w-auto"
         />
       </div>
     </header>
