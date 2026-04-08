@@ -17,6 +17,20 @@ function App() {
   const handleGenerate = () => {
     setScreen('success')
     window.scrollTo({ top: 0, behavior: 'smooth' })
+
+    // Registro silencioso en Google Sheets
+    if (EVENT.sheetWebhook) {
+      fetch(EVENT.sheetWebhook, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fullName: fullName.trim(),
+          empresa: empresa.trim(),
+          cargo: cargo.trim(),
+        }),
+      }).catch(() => {}) // silencioso, no bloquea UX
+    }
   }
 
   const handleBack = () => {
