@@ -30,7 +30,7 @@ export default function SuccessScreen({ fullName, empresa, cargo, photo, onBack 
       await new Promise(r => setTimeout(r, 500))
       const dataUrl = await toPng(exportRef.current, {
         width: 1080,
-        height: 1354,
+        height: 1350,
         pixelRatio: 1,
         cacheBust: true,
       })
@@ -61,7 +61,7 @@ export default function SuccessScreen({ fullName, empresa, cargo, photo, onBack 
     await new Promise(r => setTimeout(r, 500))
     const dataUrl = await toPng(exportRef.current, {
       width: 1080,
-      height: 1354,
+      height: 1350,
       pixelRatio: 1,
       cacheBust: true,
     })

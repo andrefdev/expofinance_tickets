@@ -1,6 +1,6 @@
 import { User } from 'lucide-react'
 
-const SVG_URL = '/assets/credencial.svg'
+const SVG_URL = import.meta.env.BASE_URL + 'assets/credencial.svg'
 
 // Photo position as % of the SVG viewBox (720 x 903.33)
 const PHOTO = {
@@ -22,10 +22,11 @@ export default function CredentialCard({ fullName, empresa, cargo, photo, forExp
     return (
       <div style={{
         width: '1080px',
-        height: '1354px',
+        height: '1350px',
         position: 'relative',
         overflow: 'hidden',
         fontFamily: 'Manrope, sans-serif',
+        backgroundColor: '#000000',
       }}>
         <img
           src={SVG_URL}
@@ -65,9 +66,9 @@ export default function CredentialCard({ fullName, empresa, cargo, photo, forExp
         }}>
           <h2 style={{
             fontFamily: 'Epilogue, sans-serif',
-            fontWeight: 900,
-            fontSize: '36px',
-            color: '#ffffff',
+            fontWeight: 700,
+            fontSize: '42px',
+            color: '#fcbf0d',
             textTransform: 'uppercase',
             letterSpacing: '0.05em',
             lineHeight: 1.15,
@@ -79,7 +80,6 @@ export default function CredentialCard({ fullName, empresa, cargo, photo, forExp
           </h2>
           {(displayCargo || displayEmpresa) && (
             <div style={{
-              marginTop: '10px',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
@@ -88,9 +88,9 @@ export default function CredentialCard({ fullName, empresa, cargo, photo, forExp
               {displayCargo && (
                 <span style={{
                   fontFamily: 'Manrope, sans-serif',
-                  fontWeight: 700,
-                  fontSize: '17px',
-                  color: '#e1b576',
+                  fontWeight: 600,
+                  fontSize: '32px',
+                  color: '#ffffff',
                   letterSpacing: '0.1em',
                   textTransform: 'uppercase',
                 }}>
@@ -101,8 +101,8 @@ export default function CredentialCard({ fullName, empresa, cargo, photo, forExp
                 <span style={{
                   fontFamily: 'Manrope, sans-serif',
                   fontWeight: 600,
-                  fontSize: '19px',
-                  color: 'rgba(255,255,255,0.75)',
+                  fontSize: '32px',
+                  color: '#ffffff',
                   letterSpacing: '0.05em',
                   wordBreak: 'break-word',
                 }}>
@@ -150,24 +150,25 @@ export default function CredentialCard({ fullName, empresa, cargo, photo, forExp
         style={{ top: `${NAME_TOP}%` }}
       >
         <h2
-          className="font-headline font-black uppercase text-white leading-tight m-0"
+          className="font-headline font-bold uppercase leading-tight m-0"
           style={{
-            fontSize: 'clamp(10px, 3.8vw, 22px)',
+            fontSize: 'clamp(10px, 4.5vw, 16px)',
             letterSpacing: '0.05em',
             textShadow: '0 2px 8px rgba(0,0,0,0.3)',
             wordBreak: 'break-word',
+            color: "#fcbf0d"
           }}
         >
           {displayName}
         </h2>
         {(displayCargo || displayEmpresa) && (
-          <div className="flex flex-col items-center mt-0.5" style={{ gap: 'clamp(0px, 0.3vw, 3px)' }}>
+          <div className="flex flex-col items-center" style={{ gap: 'clamp(0px, 0.3vw, 3px)' }}>
             {displayCargo && (
               <span
-                className="font-body font-bold uppercase"
+                className="font-body font-semibold uppercase"
                 style={{
-                  fontSize: 'clamp(7px, 2.2vw, 12px)',
-                  color: '#e1b576',
+                  fontSize: 'clamp(7px, 2.8vw, 15px)',
+                  color: '#ffffff',
                   letterSpacing: '0.1em',
                 }}
               >
@@ -178,8 +179,8 @@ export default function CredentialCard({ fullName, empresa, cargo, photo, forExp
               <span
                 className="font-body font-semibold"
                 style={{
-                  fontSize: 'clamp(7px, 2.2vw, 12px)',
-                  color: 'rgba(255,255,255,0.75)',
+                  fontSize: 'clamp(7px, 2.8vw, 15px)',
+                  color: '#ffffff',
                   letterSpacing: '0.05em',
                   wordBreak: 'break-word',
                 }}

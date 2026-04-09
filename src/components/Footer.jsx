@@ -11,11 +11,11 @@ export default function Footer() {
           rel="noopener noreferrer"
           className="flex items-center gap-1.5 opacity-40 hover:opacity-70 transition-opacity"
         >
-          <span className="text-white/50 font-body text-[9px] tracking-wider">powered by</span>
+          <span className="text-white/50 font-body text-[12px] tracking-wider">powered by</span>
           <img
             src="https://indrox.com/logo-white.svg"
             alt="Indrox"
-            className="h-3 w-auto"
+            className="h-5 w-auto"
           />
         </a>
       </div>

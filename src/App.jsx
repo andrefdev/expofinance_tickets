@@ -80,8 +80,8 @@ function App() {
                 </div>
 
                 {/* Disclaimer */}
-                <p className="text-xs text-outline-variant font-body uppercase tracking-widest text-center lg:text-left">
-                  Esta credencial no tiene validez como entrada al evento.
+                <p className="text-md text-red-600 font-body uppercase tracking-widest text-center lg:text-center">
+                  IMPORTANTE: ESTA CREDENCIAL NO TIENE VALIDEZ COMO ENTRADA AL EVENTO
                 </p>
               </section>
 
