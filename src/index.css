@@ -1,25 +1,43 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #1E32FF;
-  --color-primary-dim: #001cef;
-  --color-primary-container: #8e98ff;
-  --color-secondary: #C92C7A;
-  --color-secondary-dim: #9d005a;
-  --color-secondary-container: #ffc1d5;
-  --color-dark: #000000;
-  --color-light: #F5F5F5;
-  --color-surface: #f6f6f6;
-  --color-surface-low: #f1f1f1;
-  --color-surface-high: #e2e2e2;
-  --color-surface-white: #ffffff;
-  --color-on-surface: #2f2f2f;
-  --color-on-surface-variant: #5b5b5b;
-  --color-outline: #777777;
-  --color-outline-variant: #adadad;
+  /* === FinanceExpo Global · Brand colors === */
+  /* Primary palette */
+  --color-sea-green: #00644E;
+  --color-spring-green: #00DF82;
+  --color-aquamarine: #58DDA8;
+  /* Complementary */
+  --color-midnight: #0B3750;
+  --color-midnight-deep: #061E2D;
+  --color-midnight-soft: #143F58;
+  --color-green-yellow: #97E402;
 
-  --font-headline: "Epilogue", sans-serif;
-  --font-body: "Manrope", sans-serif;
+  /* Semantic tokens used across the app */
+  --color-primary: #00DF82;        /* Spring green — CTA / accents */
+  --color-primary-dim: #00B86A;    /* Spring green darker — hover */
+  --color-primary-container: #58DDA8;
+
+  --color-secondary: #0B3750;      /* Midnight blue — secondary CTA / brand text */
+  --color-secondary-dim: #061E2D;
+  --color-secondary-container: #143F58;
+
+  --color-accent: #97E402;         /* Green yellow — highlights */
+
+  --color-dark: #061E2D;
+  --color-light: #F5F8F7;
+  --color-surface: #F5F8F7;
+  --color-surface-low: #ECF1EF;
+  --color-surface-high: #DCE5E1;
+  --color-surface-white: #ffffff;
+  --color-on-surface: #0B3750;
+  --color-on-surface-variant: #4A6373;
+  --color-outline: #6B8392;
+  --color-outline-variant: #9FB3BE;
+
+  /* Typography — Archivo (body) + Archivo Black (titulares, sustituto libre de Neue Power Ultra) */
+  --font-headline: "Archivo", "Archivo Black", system-ui, sans-serif;
+  --font-body: "Archivo", system-ui, sans-serif;
+  --font-display: "Archivo Black", "Archivo", system-ui, sans-serif;
 }
 
 @layer base {
@@ -33,15 +51,49 @@
   }
 }
 
+/* === Shadows & elevation === */
 .kinetic-shadow {
-  box-shadow: 0 24px 32px -4px rgba(0, 9, 124, 0.08);
+  box-shadow:
+    0 24px 32px -4px rgba(11, 55, 80, 0.18),
+    0 0 0 1px rgba(11, 55, 80, 0.04);
 }
 
-.speaker-mask {
-  border-top-left-radius: 2rem;
-  border-bottom-right-radius: 2rem;
+.glow-spring {
+  box-shadow:
+    0 18px 40px -10px rgba(0, 223, 130, 0.45),
+    0 0 0 1px rgba(0, 223, 130, 0.12);
+}
+
+/* === Brand gradients === */
+.brand-gradient {
+  background: linear-gradient(135deg, #00644E 0%, #00DF82 55%, #58DDA8 100%);
+}
+
+.brand-gradient-soft {
+  background: linear-gradient(135deg, rgba(0,100,78,0.9) 0%, rgba(0,223,130,0.85) 60%, rgba(88,221,168,0.9) 100%);
+}
+
+.brand-gradient-night {
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(0, 223, 130, 0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 100%, rgba(88, 221, 168, 0.14) 0%, transparent 50%),
+    linear-gradient(180deg, #0B3750 0%, #061E2D 100%);
 }
 
 .credential-gradient {
-  background: linear-gradient(135deg, #1E32FF 0%, #8e98ff 100%);
+  background: linear-gradient(135deg, #0B3750 0%, #00644E 50%, #00DF82 100%);
+}
+
+/* Text gradient utility */
+.text-gradient-spring {
+  background: linear-gradient(135deg, #00DF82 0%, #58DDA8 50%, #97E402 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Decorative diagonal cut inspired by the F+X isotipo */
+.fx-cut {
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 80% 100%, 0 100%);
 }

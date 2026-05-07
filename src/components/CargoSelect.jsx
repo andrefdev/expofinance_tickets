@@ -10,6 +10,16 @@ const CARGOS = [
   'Director Comercial',
   'Director de Recursos Humanos',
   'Director de Ventas',
+  'Trader / Day Trader',
+  'Portfolio Manager',
+  'Risk Manager',
+  'Wealth Manager',
+  'Financial Analyst',
+  'Investment Banker',
+  'Quant / Algorithmic Trader',
+  'Forex Trader',
+  'Crypto Trader',
+  'Introducing Broker',
   'Gerente General',
   'Gerente de Área',
   'Gerente de Proyecto',
@@ -73,6 +83,9 @@ export default function CargoSelect({ value, onChange }) {
     onChange(e.target.value)
   }
 
+  const inputCls =
+    "flex-1 bg-[#F5F8F7] border border-transparent focus:border-[#00DF82] focus:bg-white focus:ring-4 focus:ring-[#00DF82]/15 px-4 py-4 rounded-xl font-body text-base md:text-lg text-[#0B3750] transition-all placeholder:text-[#9FB3BE] outline-none"
+
   if (isOther) {
     return (
       <div className="space-y-2">
@@ -84,7 +97,7 @@ export default function CargoSelect({ value, onChange }) {
             onChange={handleCustomChange}
             placeholder="Escribe tu cargo"
             maxLength={60}
-            className="flex-1 bg-surface-low border-none focus:ring-2 focus:ring-primary-container px-4 py-4 rounded-lg font-body text-lg transition-all placeholder:text-outline-variant outline-none"
+            className={inputCls}
           />
           <button
             type="button"
@@ -93,7 +106,7 @@ export default function CargoSelect({ value, onChange }) {
               onChange('')
               setSearch('')
             }}
-            className="px-3 py-4 rounded-lg bg-surface-high text-on-surface-variant hover:bg-outline-variant/30 font-body text-sm font-bold transition-colors shrink-0"
+            className="px-4 py-4 rounded-xl bg-[#DCE5E1] text-[#0B3750] hover:bg-[#9FB3BE]/40 font-body text-sm font-bold transition-colors shrink-0"
           >
             Volver
           </button>
@@ -104,38 +117,34 @@ export default function CargoSelect({ value, onChange }) {
 
   return (
     <div ref={containerRef} className="relative">
-      {/* Trigger */}
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="w-full bg-surface-low border-none px-4 py-4 rounded-lg font-body text-lg text-left flex items-center justify-between transition-all outline-none focus:ring-2 focus:ring-primary-container"
+        className={`w-full bg-[#F5F8F7] border border-transparent px-4 py-4 rounded-xl font-body text-base md:text-lg text-left flex items-center justify-between transition-all outline-none ${open ? 'border-[#00DF82] bg-white ring-4 ring-[#00DF82]/15' : 'hover:bg-white hover:border-[#DCE5E1]'}`}
       >
-        <span className={value ? 'text-on-surface' : 'text-outline-variant'}>
+        <span className={value ? 'text-[#0B3750] font-medium' : 'text-[#9FB3BE]'}>
           {value || 'Selecciona tu cargo'}
         </span>
-        <ChevronDown size={20} className={`text-outline transition-transform ${open ? 'rotate-180' : ''}`} />
+        <ChevronDown size={20} className={`text-[#6B8392] transition-transform ${open ? 'rotate-180 text-[#00DF82]' : ''}`} />
       </button>
 
-      {/* Dropdown */}
       {open && (
-        <div className="absolute z-50 top-full left-0 right-0 mt-1 bg-surface-white rounded-xl kinetic-shadow border border-surface-high/50 overflow-hidden">
-          {/* Search */}
-          <div className="flex items-center gap-2 px-3 py-2 border-b border-surface-high">
-            <Search size={16} className="text-outline shrink-0" />
+        <div className="absolute z-50 top-full left-0 right-0 mt-2 bg-white rounded-xl kinetic-shadow border border-[#DCE5E1] overflow-hidden">
+          <div className="flex items-center gap-2 px-3 py-2.5 border-b border-[#DCE5E1] bg-[#F5F8F7]">
+            <Search size={16} className="text-[#6B8392] shrink-0" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Buscar cargo..."
-              className="flex-1 bg-transparent border-none outline-none font-body text-sm placeholder:text-outline-variant py-1"
+              className="flex-1 bg-transparent border-none outline-none font-body text-sm text-[#0B3750] placeholder:text-[#9FB3BE] py-1"
               autoFocus
             />
           </div>
 
-          {/* Options */}
-          <div className="max-h-52 overflow-y-auto">
+          <div className="max-h-56 overflow-y-auto">
             {filtered.length === 0 ? (
-              <div className="px-4 py-3 text-sm text-outline-variant text-center">
+              <div className="px-4 py-3 text-sm text-[#9FB3BE] text-center">
                 Sin resultados
               </div>
             ) : (
@@ -144,9 +153,11 @@ export default function CargoSelect({ value, onChange }) {
                   key={cargo}
                   type="button"
                   onClick={() => handleSelect(cargo)}
-                  className={`w-full text-left px-4 py-2.5 text-sm font-body transition-colors hover:bg-primary/5 ${
-                    cargo === value ? 'bg-primary/10 text-primary font-bold' : 'text-on-surface'
-                  } ${cargo === 'Otro' ? 'border-t border-surface-high font-semibold text-secondary' : ''}`}
+                  className={`w-full text-left px-4 py-2.5 text-sm font-body transition-colors hover:bg-[#00DF82]/10 ${
+                    cargo === value
+                      ? 'bg-[#00DF82]/15 text-[#00644E] font-bold'
+                      : 'text-[#0B3750]'
+                  } ${cargo === 'Otro' ? 'border-t border-[#DCE5E1] font-semibold text-[#00644E]' : ''}`}
                 >
                   {cargo}
                 </button>

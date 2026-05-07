@@ -19,18 +19,24 @@ export default function ImageCropper({ imageSrc, onCropDone, onCancel }) {
   }, [imageSrc, croppedAreaPixels, onCropDone])
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-dark/80 backdrop-blur-sm p-4">
-      <div className="bg-surface-white rounded-2xl overflow-hidden w-full max-w-lg kinetic-shadow flex flex-col">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#061E2D]/85 backdrop-blur-md p-4">
+      <div className="bg-white rounded-2xl overflow-hidden w-full max-w-lg kinetic-shadow flex flex-col relative">
+        {/* Top accent stripe */}
+        <div className="absolute top-0 left-0 right-0 h-1 brand-gradient" />
+
         {/* Header */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-surface-high">
-          <h3 className="font-headline font-bold text-on-surface text-base">Recortar foto</h3>
-          <button onClick={onCancel} className="text-outline hover:text-on-surface transition-colors">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-[#DCE5E1]">
+          <h3 className="font-display font-black text-[#0B3750] text-base uppercase tracking-tight">Recortar foto</h3>
+          <button
+            onClick={onCancel}
+            className="text-[#6B8392] hover:text-[#0B3750] transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#F5F8F7]"
+          >
             <X size={20} />
           </button>
         </div>
 
         {/* Cropper area */}
-        <div className="relative w-full aspect-square bg-dark">
+        <div className="relative w-full aspect-square bg-[#0B3750]">
           <Cropper
             image={imageSrc}
             crop={crop}
@@ -45,8 +51,8 @@ export default function ImageCropper({ imageSrc, onCropDone, onCancel }) {
         </div>
 
         {/* Zoom control */}
-        <div className="flex items-center gap-3 px-5 py-3">
-          <ZoomOut size={16} className="text-outline shrink-0" />
+        <div className="flex items-center gap-3 px-5 py-3 bg-[#F5F8F7]">
+          <ZoomOut size={16} className="text-[#6B8392] shrink-0" />
           <input
             type="range"
             min={1}
@@ -54,22 +60,23 @@ export default function ImageCropper({ imageSrc, onCropDone, onCancel }) {
             step={0.05}
             value={zoom}
             onChange={(e) => setZoom(Number(e.target.value))}
-            className="flex-1 h-1.5 bg-surface-high rounded-full appearance-none cursor-pointer accent-primary"
+            className="flex-1 h-1.5 bg-[#DCE5E1] rounded-full appearance-none cursor-pointer"
+            style={{ accentColor: '#00DF82' }}
           />
-          <ZoomIn size={16} className="text-outline shrink-0" />
+          <ZoomIn size={16} className="text-[#6B8392] shrink-0" />
         </div>
 
         {/* Actions */}
-        <div className="flex gap-3 px-5 py-4 border-t border-surface-high">
+        <div className="flex gap-3 px-5 py-4 border-t border-[#DCE5E1]">
           <button
             onClick={onCancel}
-            className="flex-1 py-3 px-4 rounded-xl font-bold text-on-surface-variant bg-surface-high hover:bg-surface-high/80 transition-colors"
+            className="flex-1 py-3 px-4 rounded-xl font-display font-black text-sm uppercase tracking-tight text-[#4A6373] bg-[#F5F8F7] hover:bg-[#DCE5E1] transition-colors"
           >
             Cancelar
           </button>
           <button
             onClick={handleConfirm}
-            className="flex-1 py-3 px-4 rounded-xl font-bold text-white bg-primary hover:bg-primary-dim transition-colors flex items-center justify-center gap-2"
+            className="flex-1 py-3 px-4 rounded-xl font-display font-black text-sm uppercase tracking-tight text-[#0B3750] bg-[#00DF82] hover:bg-[#58DDA8] transition-colors flex items-center justify-center gap-2 glow-spring"
           >
             <Check size={18} />
             Confirmar
