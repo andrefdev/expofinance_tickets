@@ -28,13 +28,13 @@ export default function SuccessScreen({ fullName, empresa, cargo, photo, onBack 
     try {
       await new Promise(r => setTimeout(r, 500))
       const dataUrl = await toPng(exportRef.current, {
-        width: 1080,
-        height: 1350,
-        pixelRatio: 1,
+        width: 1345,
+        height: 700,
+        pixelRatio: 2,
         cacheBust: true,
       })
       const safeName = fullName.trim().replace(/\s+/g, '_').toLowerCase()
-      saveAs(dataUrl, `credencial-${safeName}-FinanceExpo2025.png`)
+      saveAs(dataUrl, `credencial-${safeName}-FinanceExpoArgentina2026.png`)
       toast.success('Credencial descargada')
     } catch (err) {
       console.error(err)
@@ -59,9 +59,9 @@ export default function SuccessScreen({ fullName, empresa, cargo, photo, onBack 
     if (!exportRef.current) return null
     await new Promise(r => setTimeout(r, 500))
     const dataUrl = await toPng(exportRef.current, {
-      width: 1080,
-      height: 1350,
-      pixelRatio: 1,
+      width: 1345,
+      height: 700,
+      pixelRatio: 2,
       cacheBust: true,
     })
     const res = await fetch(dataUrl)
@@ -73,7 +73,7 @@ export default function SuccessScreen({ fullName, empresa, cargo, photo, onBack 
       try {
         const blob = await generateImageBlob()
         if (blob) {
-          const file = new File([blob], 'credencial-financeexpo.png', { type: 'image/png' })
+          const file = new File([blob], 'credencial-financeexpo-argentina.png', { type: 'image/png' })
           const shareData = {
             text: EVENT.shareText,
             url: EVENT.eventUrl,
@@ -127,8 +127,8 @@ export default function SuccessScreen({ fullName, empresa, cargo, photo, onBack 
 
       <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
         {/* Credential preview */}
-        <div className="lg:col-span-7 flex justify-center">
-          <div className="w-full max-w-[480px] relative">
+        <div className="lg:col-span-8 flex justify-center">
+          <div className="w-full max-w-[760px] relative">
             <div className="absolute -inset-6 bg-[#00DF82]/15 rounded-[2rem] blur-3xl" />
             <div className="relative">
               <CredentialCard fullName={fullName} empresa={empresa} cargo={cargo} photo={photo} />
@@ -137,7 +137,7 @@ export default function SuccessScreen({ fullName, empresa, cargo, photo, onBack 
         </div>
 
         {/* Actions */}
-        <div className="lg:col-span-5 flex flex-col gap-5 md:gap-6">
+        <div className="lg:col-span-4 flex flex-col gap-5 md:gap-6">
           {/* Download & Share buttons */}
           <div className="bg-white p-6 md:p-8 rounded-2xl kinetic-shadow space-y-3 relative overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-1 brand-gradient" />

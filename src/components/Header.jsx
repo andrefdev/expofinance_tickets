@@ -31,7 +31,7 @@ export default function Header() {
         <div className="md:hidden flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10">
           <span className="w-1.5 h-1.5 rounded-full bg-[#00DF82] animate-pulse" />
           <span className="font-body text-[9px] tracking-widest uppercase text-white/85 font-semibold">
-            29-30 AGO
+            {EVENT.dateShort}
           </span>
         </div>
       </div>

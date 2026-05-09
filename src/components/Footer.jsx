@@ -16,7 +16,7 @@ export default function Footer() {
               {EVENT.name}
             </p>
             <p className="text-white/40 font-body text-[10px] uppercase tracking-[0.2em]">
-              © 2025 · Visual Identity System
+              © {EVENT.year} · {EVENT.dateLabel} · {EVENT.venueDetail}
             </p>
           </div>
         </div>

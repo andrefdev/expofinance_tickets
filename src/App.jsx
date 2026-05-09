@@ -67,8 +67,8 @@ function App() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start"
             >
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
               {/* === Left: Hero + Form === */}
               <section className="space-y-8 md:space-y-10">
                 {/* Event tagline pill */}
@@ -78,7 +78,7 @@ function App() {
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00DF82]" />
                   </span>
                   <span className="font-body text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-white/90">
-                    Visual Identity System · 2025
+                    {EVENT.dateLabel} · {EVENT.year}
                   </span>
                 </div>
 
@@ -88,18 +88,18 @@ function App() {
                     <span className="text-gradient-spring">Credencial Digital</span>
                   </h1>
                   <p className="text-white/70 text-base md:text-lg max-w-xl leading-relaxed">
-                    Crea tu credencial oficial para <span className="text-white font-semibold">{EVENT.name}</span>, la mayor expo global de trading y mercados financieros. Únete a la comunidad que está descifrando el ruido del mercado y convirtiéndolo en decisiones accionables.
+                    Crea tu credencial oficial para <span className="text-white font-semibold">{EVENT.name}</span>, la #1 expo de Trading, Crypto & Fintech en LATAM & Caribbean. Únete a la comunidad que está descifrando el mercado y convirtiéndolo en decisiones accionables.
                   </p>
 
                   {/* Event meta */}
                   <div className="flex flex-wrap items-center gap-3 pt-2">
                     <div className="px-3 py-2 rounded-lg bg-white/5 border border-white/10">
-                      <p className="font-body text-[9px] tracking-widest uppercase text-[#58DDA8] font-bold">Fechas</p>
+                      <p className="font-body text-[9px] tracking-widest uppercase text-[#58DDA8] font-bold">{EVENT.dateLabel}</p>
                       <p className="font-display text-sm md:text-base font-black text-white">{EVENT.date}</p>
                     </div>
                     <div className="px-3 py-2 rounded-lg bg-white/5 border border-white/10">
                       <p className="font-body text-[9px] tracking-widest uppercase text-[#58DDA8] font-bold">Sede</p>
-                      <p className="font-display text-sm md:text-base font-black text-white">{EVENT.venue}</p>
+                      <p className="font-display text-sm md:text-base font-black text-white">{EVENT.venue}, {EVENT.venueDetail}</p>
                     </div>
                   </div>
                 </div>
@@ -129,7 +129,7 @@ function App() {
 
               {/* === Right: Live Preview === */}
               <section className="lg:sticky lg:top-32 flex flex-col items-center">
-                <div className="w-full max-w-md relative group">
+                <div className="w-full max-w-2xl relative group">
                   {/* Background glow */}
                   <div className="absolute -inset-6 bg-[#00DF82]/15 rounded-[2rem] blur-3xl group-hover:bg-[#00DF82]/25 transition-all duration-700" />
 
@@ -156,12 +156,13 @@ function App() {
                   type="button"
                   onClick={handleGenerate}
                   disabled={!isFormValid}
-                  className="mt-6 w-full max-w-md bg-[#00DF82] text-[#0B3750] py-4 px-8 rounded-xl font-display font-black text-base md:text-lg uppercase tracking-tight flex items-center justify-center gap-3 transition-all active:scale-95 hover:bg-[#58DDA8] glow-spring disabled:opacity-30 disabled:cursor-not-allowed disabled:active:scale-100 disabled:shadow-none"
+                  className="mt-6 w-full max-w-2xl bg-[#00DF82] text-[#0B3750] py-4 px-8 rounded-xl font-display font-black text-base md:text-lg uppercase tracking-tight flex items-center justify-center gap-3 transition-all active:scale-95 hover:bg-[#58DDA8] glow-spring disabled:opacity-30 disabled:cursor-not-allowed disabled:active:scale-100 disabled:shadow-none"
                 >
                   Descargar Credencial
                   <span className="text-xl">→</span>
                 </button>
               </section>
+              </div>
             </motion.div>
           ) : (
             <motion.div
