@@ -15,7 +15,7 @@ export const EVENT = {
   platformName: "FinanceExpo",
   defaultRole: "ATTENDEE",
   shareText: `🚀 ¡Nos vemos en #FinanceExpoArgentina 2026, la #1 expo de Trading, Crypto & Fintech en LATAM & Caribbean.\n\n🔴 Main Day con los principales actores del trading, cripto y fintech, paneles, networking y oportunidades para descifrar el mercado y convertirlo en decisiones accionables.\n\n*Si vas a asistir, ¡avísame para coincidir!*\n📅 23 de Mayo, 2026 — Main Day\n📍 Buenos Aires, Argentina\n\n#FinanceExpoArgentina #TradingExpo #Crypto #Fintech #Networking`,
-  eventUrl: "https://finsummit.com",
+  eventUrl: "https://financeexpoglobal.com/",
   // Google Apps Script Web App URL para registro en Google Sheets
   sheetWebhook: "https://script.google.com/macros/s/AKfycbyLZ6EnjTID7vt-QoVcWHp45x-PI6lTet1oxXVPMaRj262PT2R3qOH9WaKB5rJkXLgfCQ/exec",
   theme: {
