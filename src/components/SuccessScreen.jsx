@@ -22,17 +22,45 @@ export default function SuccessScreen({ fullName, empresa, cargo, photo, onBack 
   const [copied, setCopied] = useState(false)
   const [downloading, setDownloading] = useState(false)
 
+  const renderToDataUrl = useCallback(async () => {
+    if (!exportRef.current) return null
+
+    if (document.fonts?.ready) {
+      try { await document.fonts.ready } catch { /* noop */ }
+    }
+
+    const imgs = Array.from(exportRef.current.querySelectorAll('img'))
+    await Promise.all(
+      imgs.map(img => {
+        if (img.complete && img.naturalWidth > 0) {
+          return img.decode ? img.decode().catch(() => {}) : Promise.resolve()
+        }
+        return new Promise(resolve => {
+          img.addEventListener('load', resolve, { once: true })
+          img.addEventListener('error', resolve, { once: true })
+        })
+      })
+    )
+
+    await new Promise(r => requestAnimationFrame(() => r()))
+
+    const opts = {
+      width: 1345,
+      height: 700,
+      pixelRatio: 2,
+      cacheBust: false,
+    }
+    // Safari/iOS frequently returns a blank PNG on the first call — warm up, then capture.
+    await toPng(exportRef.current, opts)
+    return toPng(exportRef.current, opts)
+  }, [])
+
   const handleDownload = useCallback(async () => {
-    if (!exportRef.current || downloading) return
+    if (downloading) return
     setDownloading(true)
     try {
-      await new Promise(r => setTimeout(r, 500))
-      const dataUrl = await toPng(exportRef.current, {
-        width: 1345,
-        height: 700,
-        pixelRatio: 2,
-        cacheBust: true,
-      })
+      const dataUrl = await renderToDataUrl()
+      if (!dataUrl) throw new Error('No image generated')
       const safeName = fullName.trim().replace(/\s+/g, '_').toLowerCase()
       saveAs(dataUrl, `credencial-${safeName}-FinanceExpoArgentina2026.png`)
       toast.success('Credencial descargada')
@@ -42,7 +70,7 @@ export default function SuccessScreen({ fullName, empresa, cargo, photo, onBack 
     } finally {
       setDownloading(false)
     }
-  }, [fullName, downloading])
+  }, [fullName, downloading, renderToDataUrl])
 
   const handleCopy = useCallback(async () => {
     try {
@@ -56,17 +84,11 @@ export default function SuccessScreen({ fullName, empresa, cargo, photo, onBack 
   }, [])
 
   const generateImageBlob = useCallback(async () => {
-    if (!exportRef.current) return null
-    await new Promise(r => setTimeout(r, 500))
-    const dataUrl = await toPng(exportRef.current, {
-      width: 1345,
-      height: 700,
-      pixelRatio: 2,
-      cacheBust: true,
-    })
+    const dataUrl = await renderToDataUrl()
+    if (!dataUrl) return null
     const res = await fetch(dataUrl)
     return res.blob()
-  }, [])
+  }, [renderToDataUrl])
 
   const handleLinkedIn = useCallback(async () => {
     if (navigator.share && navigator.canShare) {
@@ -90,7 +112,7 @@ export default function SuccessScreen({ fullName, empresa, cargo, photo, onBack 
     }
 
     try {
-      await navigator.clipboard.writeText(EVENT.shareText + '\n\n' + EVENT.eventUrl)
+      await navigator.clipboard.writeText(EVENT.shareText)
       toast.success('Texto copiado. Pégalo en tu publicación de LinkedIn y adjunta la imagen descargada.', { duration: 6000 })
     } catch {
       toast.info('Abre LinkedIn, pega el texto promocional y adjunta tu credencial descargada.', { duration: 6000 })
